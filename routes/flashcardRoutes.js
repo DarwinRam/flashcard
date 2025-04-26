@@ -9,8 +9,20 @@ router.get('/', showFlashcards);
 
 // Show Add Flashcard Form
 router.get('/add', (req, res) => {
-  res.render('partials/addFlashcard', { title: 'Add Flashcard' });
+  res.render('flashcards/addFlashcard', { title: 'Add Flashcard' });
 });
+
+router.get('/study', async (req, res) => {
+    try {
+      const result = await db.query('SELECT * FROM flashcards');
+      const flashcards = result.rows;
+      res.render('flashcards/study', { flashcards });
+    } catch (err) {
+      console.error('Error fetching flashcards for study:', err);
+      res.status(500).send('Server Error');
+    }
+  });  
+  
 
 // Handle Add Flashcard Submission
 router.post('/add', addFlashcard);

@@ -1,0 +1,96 @@
+<%- include('../partials/header') %>
+
+<h1>Let's Get Studying!!</h1>
+
+<li><a href="/">Enough Studying!!!</a></li>
+<br>
+
+<div id="study-area" data-total="<%= flashcards.length %>">
+  <% flashcards.forEach((card, index) => { %>
+    <div class="flashcard-container" data-index="<%= index %>">
+      <div class="flashcard-flip" onclick="flipCard(this)">
+        <div class="front">
+          <p><%= card.front %></p>
+        </div>
+        <div class="back">
+          <p><%= card.back %></p>
+        </div>
+      </div>
+    </div>
+  <% }) %>
+
+ 
+<div id="controls">
+    <button onclick="prevCard()">⬅️ Previous</button>
+    <span id="counter">1 / <%= flashcards.length %></span>
+    <button onclick="nextCard()">Next ➡️</button>
+    <span id="progress">(0%)</span>
+  </div>
+  
+  <div class="progress-bar-wrapper">
+    <div id="progress-bar"></div>
+  </div>
+
+  <div class="progress-bar-wrapper">
+    <div id="progress-bar"></div>
+  </div>
+  
+  <!-- Study Again Button -->
+  <div id="study-again-container" style="display: none; text-align: center; margin-top: 15px;">
+    <button onclick="restartStudy()">🔁 Study Again</button>
+  </div>
+  
+  
+  <script>
+    const cards = document.querySelectorAll('.flashcard-container');
+    let currentCardIndex = 0;
+  
+    function showCard(index) {
+      cards.forEach((card, i) => {
+        card.style.display = i === index ? 'inline-block' : 'none';
+        card.querySelector('.flashcard-flip').classList.remove('flipped');
+      });
+  
+      // Update counter
+      document.getElementById('counter').textContent = `${index + 1} / ${cards.length}`;
+  
+      // Update progress
+      const percent = Math.round(((index + 1) / cards.length) * 100);
+      document.getElementById('progress').textContent = `(${percent}%)`;
+      document.getElementById('progress-bar').style.width = `${percent}%`;
+  
+      // Show Study Again button at end
+      const studyAgainContainer = document.getElementById('study-again-container');
+      studyAgainContainer.style.display = (index === cards.length - 1) ? 'block' : 'none';
+    }
+  
+    function nextCard() {
+      if (currentCardIndex < cards.length - 1) {
+        currentCardIndex++;
+        showCard(currentCardIndex);
+      }
+    }
+  
+    function prevCard() {
+      if (currentCardIndex > 0) {
+        currentCardIndex--;
+        showCard(currentCardIndex);
+      }
+    }
+  
+    function flipCard(cardElement) {
+      cardElement.classList.toggle('flipped');
+    }
+  
+    function restartStudy() {
+      currentCardIndex = 0;
+      showCard(currentCardIndex);
+    }
+  
+    // Initialize
+    showCard(currentCardIndex);
+  </script>
+  
+  
+
+<%- include('../partials/footer') %>
