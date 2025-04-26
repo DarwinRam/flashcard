@@ -1,0 +1,30 @@
+{
+  "name": "flashcard",
+  "version": "1.0.0",
+  "description": "Flashcard app to study",
+  "homepage": "https://github.com/DarwinRam/flashcard#readme",
+  "bugs": {
+    "url": "https://github.com/DarwinRam/flashcard/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DarwinRam/flashcard.git"
+  },
+  "license": "ISC",
+  "author": "Darwin Ramos",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "start":"nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  },
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "pg": "^8.15.6"
+  }
+}
