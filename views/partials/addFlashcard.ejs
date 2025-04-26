@@ -1,0 +1,21 @@
+<%- include('../partials/header') %>
+
+<h1>Add a New Flashcard</h1>
+
+<a href="/flashcards">Back to Flashcards</a>
+
+<form action="/flashcards/add" method="POST" class="flashcard-form">
+  <div>
+    <label for="front">Front (Question/Term):</label>
+    <input type="text" id="front" name="front" required>
+  </div>
+
+  <div>
+    <label for="back">Back (Answer/Definition):</label>
+    <input type="text" id="back" name="back" required>
+  </div>
+
+  <button type="submit">Create Flashcard</button>
+</form>
+
+<%- include('../partials/footer') %>

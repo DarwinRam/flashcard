@@ -1,0 +1,27 @@
+<%- include('partials/header') %>
+
+<h1>All Flashcards</h1>
+
+<a href="/flashcards/add">➕ Add New Flashcard</a>
+
+<div class="flashcard-list">
+  <% if (flashcards.length === 0) { %>
+    <p>No flashcards found.</p>
+  <% } else { %>
+    <% flashcards.forEach(card => { %>
+      <div class="flashcard">
+        <p><strong>Front:</strong> <%= card.front %></p>
+        <p><strong>Back:</strong> <%= card.back %></p>
+
+        <div class="actions">
+          <a href="/flashcards/<%= card.id %>/edit">✏️ Edit</a>
+          <form action="/flashcards/delete/<%= card.id %>" method="POST" style="display:inline;">
+            <button type="submit">🗑️ Delete</button>
+          </form>
+        </div>
+      </div>
+    <% }) %>
+  <% } %>
+</div>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,21 @@
+<%- include('../partials/header') %>
+
+<h1>Edit Flashcard</h1>
+
+<a href="/flashcards">Back to Flashcards</a>
+
+<form action="/flashcards/<%= flashcard.id %>/edit" method="POST" class="flashcard-form">
+  <div>
+    <label for="front">Front (Question/Term):</label>
+    <input type="text" id="front" name="front" value="<%= flashcard.front %>" required>
+  </div>
+
+  <div>
+    <label for="back">Back (Answer/Definition):</label>
+    <input type="text" id="back" name="back" value="<%= flashcard.back %>" required>
+  </div>
+
+  <button type="submit">Update Flashcard</button>
+</form>
+
+<%- include('../partials/footer') %>
