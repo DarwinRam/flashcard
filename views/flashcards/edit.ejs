@@ -1,21 +1,23 @@
 <%- include('../partials/header') %>
 
-<h1>Edit Flashcard</h1>
+<div class="edit-flashcard-container">
+  <h1 class="edit-title">Edit Flashcard</h1>
 
-<a href="/flashcards">Back to Flashcards</a>
+  <a href="/flashcards" class="back-link">← Back to Flashcards</a>
 
-<form action="/flashcards/<%= flashcard.id %>/edit" method="POST" class="flashcard-form">
-  <div>
-    <label for="front">Front (Question/Term):</label>
-    <input type="text" id="front" name="front" value="<%= flashcard.front %>" required>
-  </div>
+  <form action="/flashcards/<%= flashcard.id %>/edit" method="POST" class="flashcard-form">
+    <div class="form-group">
+      <label for="front" class="form-label">Front (Question/Term):</label>
+      <input type="text" id="front" name="front" value="<%= flashcard.front %>" class="form-input" required>
+    </div>
 
-  <div>
-    <label for="back">Back (Answer/Definition):</label>
-    <input type="text" id="back" name="back" value="<%= flashcard.back %>" required>
-  </div>
+    <div class="form-group">
+      <label for="back" class="form-label">Back (Answer/Definition):</label>
+      <input type="text" id="back" name="back" value="<%= flashcard.back %>" class="form-input" required>
+    </div>
 
-  <button type="submit">Update Flashcard</button>
-</form>
+    <button type="submit" class="submit-btn">Update Flashcard</button>
+  </form>
+</div>
 
 <%- include('../partials/footer') %>

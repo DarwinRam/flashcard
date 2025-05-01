@@ -1,30 +1,38 @@
 <%- include('partials/header') %>
 
-<h1>All Flashcards</h1>
+<div class="manage-container">
+  <h1>📚 Manage Your Flashcards</h1>
 
-<li><a href="/">Home</a></li>
-<br>
-<a href="/flashcards/add">➕ Add New Flashcard</a>
+  <nav class="nav-links">
+    <a href="/">🏠 Home</a>
+    <a href="/flashcards/add">➕ Add New Flashcard</a>
+    <a href="/flashcards/study">🎯 Study Mode</a>
+  </nav>
 
-
-<div class="flashcard-list">
-  <% if (flashcards.length === 0) { %>
-    <p>No flashcards found.</p>
-  <% } else { %>
-    <% flashcards.forEach(card => { %>
-      <div class="flashcard">
-        <p><strong>Front:</strong> <%= card.front %></p>
-        <p><strong>Back:</strong> <%= card.back %></p>
-
-        <div class="actions">
-          <a href="/flashcards/<%= card.id %>/edit">✏️ Edit</a>
-          <form action="/flashcards/delete/<%= card.id %>" method="POST" style="display:inline;">
-            <button type="submit">🗑️ Delete</button>
-          </form>
+  <div class="flashcard-list">
+    <% if (flashcards.length === 0) { %>
+      <p>No flashcards found.</p>
+    <% } else { %>
+      <% flashcards.forEach(card => { %>
+        <div class="flashcard">
+          <div class="flashcard-content">
+            <div class="question">
+              <strong>Q:</strong> <%= card.front %>
+            </div>
+            <div class="answer">
+              <strong>A:</strong> <%= card.back %>
+            </div>
+          </div>
+          <div class="actions">
+            <a href="/flashcards/<%= card.id %>/edit" class="edit-btn">🖊️ Edit</a>
+            <form action="/flashcards/delete/<%= card.id %>" method="POST">
+              <button type="submit" class="delete-btn">🗑️ Delete</button>
+            </form>
+          </div>
         </div>
-      </div>
-    <% }) %>
-  <% } %>
+      <% }) %>
+    <% } %>
+  </div>
 </div>
 
 <%- include('partials/footer') %>
