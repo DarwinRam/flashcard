@@ -5,15 +5,25 @@
 
   <a href="/flashcards" class="back-link">⬅️ Back to Flashcards</a>
 
+  <% if (errors && errors.length > 0) { %>
+    <div class="error-messages">
+      <ul>
+        <% errors.forEach(error => { %>
+          <li><%= error %></li>
+        <% }); %>
+      </ul>
+    </div>
+  <% } %>
+
   <form action="/flashcards/add" method="POST" class="flashcard-form">
     <div class="form-group">
       <label for="front">Front (Question/Term):</label>
-      <input type="text" id="front" name="front" required>
+      <input type="text" id="front" name="front" value="<%= typeof front !== 'undefined' ? front : '' %>">
     </div>
 
     <div class="form-group">
       <label for="back">Back (Answer/Definition):</label>
-      <input type="text" id="back" name="back" required>
+      <input type="text" id="back" name="back" value="<%= typeof back !== 'undefined' ? back : '' %>">
     </div>
 
     <button type="submit" class="create-btn">Create Flashcard</button>

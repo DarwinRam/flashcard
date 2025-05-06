@@ -12,7 +12,12 @@ const router = express.Router();
 
 router.get('/', showFlashcards);
 router.get('/add', (req, res) => {
-  res.render('flashcards/addFlashcard', { title: 'Add Flashcard' });
+  res.render('flashcards/addFlashcard', {
+    title: 'Add Flashcard',
+    errors: [],
+    front: '',
+    back: ''
+  });
 });
 router.get('/study', showStudyPage);
 router.post('/add', addFlashcard);

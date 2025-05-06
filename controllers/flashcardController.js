@@ -18,17 +18,37 @@ export async function showFlashcards(req, res) {
 
 export async function addFlashcard(req, res) {
   const { front, back } = req.body;
-  if (!front || !back) {
-    return res.status(400).render('error', { message: 'Front and Back text are required!' });
+  const errors = [];
+
+  // Validation
+  if (!front || front.trim() === "") {
+    errors.push("Front (Question/Term) is required.");
   }
+  if (!back || back.trim() === "") {
+    errors.push("Back (Answer/Definition) is required.");
+  }
+
+  if (errors.length > 0) {
+    return res.status(400).render('flashcards/addFlashcard', {
+      errors,
+      front,
+      back
+    });
+  }
+
   try {
     await createFlashcard(front, back);
     res.redirect('/flashcards');
   } catch (error) {
     console.error(error);
-    res.status(500).render('error', { message: 'Error creating flashcard' });
+    res.status(500).render('flashcards/add', {
+      errors: ['Error creating flashcard. Please try again.'],
+      front,
+      back
+    });
   }
 }
+
 
 export async function deleteFlashcard(req, res) {
   const { id } = req.params;
