@@ -362,3 +362,23 @@ h1 .study-exit-button {
   padding-left: 0;
 }
 
+.input-error {
+  border: 1px solid red;
+  outline: none;
+}
+
+.field-error {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 4px;
+}
+
+.invalid {
+  border: 2px solid red !important;
+  
+}
+.invalid-label {
+  color: red;
+}
+
+

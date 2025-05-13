@@ -5,25 +5,35 @@
 
   <a href="/flashcards" class="back-link">⬅️ Back to Flashcards</a>
 
-  <% if (errors && errors.length > 0) { %>
-    <div class="error-messages">
-      <ul>
-        <% errors.forEach(error => { %>
-          <li><%= error %></li>
-        <% }); %>
-      </ul>
-    </div>
-  <% } %>
-
   <form action="/flashcards/add" method="POST" class="flashcard-form">
     <div class="form-group">
       <label for="front">Front (Question/Term):</label>
-      <input type="text" id="front" name="front" value="<%= typeof front !== 'undefined' ? front : '' %>">
+      <input
+  type="text"
+  name="front"
+  value="<%= typeof front !== 'undefined' ? front : '' %>"
+  class="form-control <%= errors && (!front || front.trim() === '') ? 'invalid' : '' %>"
+  placeholder="Enter the question or term"
+/>
+    
+      <% if (errors && errors.find(e => e.includes('Front'))) { %>
+        <div class="field-error">This field is required.</div>
+      <% } %>
     </div>
 
     <div class="form-group">
       <label for="back">Back (Answer/Definition):</label>
-      <input type="text" id="back" name="back" value="<%= typeof back !== 'undefined' ? back : '' %>">
+      <input
+      type="text"
+      name="back"
+      value="<%= typeof back !== 'undefined' ? back : '' %>"
+      class="form-control <%= errors && (!back || back.trim() === '') ? 'invalid' : '' %>"
+      placeholder="Enter the answer or definition"
+    />
+
+      <% if (errors && errors.find(e => e.includes('Back'))) { %>
+        <div class="field-error">This field is required.</div>
+      <% } %>
     </div>
 
     <button type="submit" class="create-btn">Create Flashcard</button>

@@ -6,11 +6,12 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const pool = new Pool({
-    host: process.env.DB_Host,
-    user: process.env.DB_User,
-    password: process.env.DB_Password,
-    database: process.env.DB_Name,
-    port: process.env.DB_Port,
-  });
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  port: parseInt(process.env.DB_PORT), // Ensure port is a number
+});
+
 
 export default pool;

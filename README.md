@@ -38,3 +38,6 @@ Clone the repository or download
 - https://docs.google.com/presentation/d/1sdPCnWoKs-Dzu3nsPvl-rAOgXmyIaUsN/edit?usp=drive_link&ouid=107823630571025392855&rtpof=true&sd=true
 
 
+## Validation SCreens:
+
+Can find them in the PIctures folder.
